@@ -1,0 +1,251 @@
+/* wrap */
+.wrap{
+	width:343px;
+	height:480px;
+	background: url('img/bg.jpg');
+	margin:100px auto;
+	position: relative;
+	overflow: hidden;
+}
+/*分数*/
+.scoreCon{
+	position: absolute;
+	top:30px;
+	width:100%;
+	text-align: center;
+	font-size: 0;
+	z-index: 1;
+}
+.startCon{
+	position:absolute;
+	top:100px;
+	width:100%;
+}
+.startAni{
+	position: absolute;
+	width:100%;
+    background: url('img/head.jpg')70% no-repeat;
+    height:77px;
+    animation: updown 2s infinite linear;
+}
+.startAniBird{
+	width:40px;
+	height:86px;
+	position: absolute;
+	top:0;
+	right:60px;
+	background: url('img/bird0.png') 0 0 no-repeat;
+	animation: birdfly 1s infinite linear;
+}
+/*小鸟*/
+.bird{
+	width:40px;
+	height:26px;
+	background: url('img/bird0.png');
+	animation:birdfly 1s infinite;
+	position: absolute;
+	left:40px;
+	display: none;
+	z-index: 3;
+}
+/*动画*/
+/*小鸟飞翔*/
+@-webkit-keyframes birdfly{
+	from{
+		background: url('img/bird0.png') 0 0 no-repeat;
+	}
+	to{
+		background: url('img/bird1.png') 0 0 no-repeat;
+	}
+}
+@-moz-keyframes birdfly{
+	from{
+		background: url('img/bird0.png') 0 0 no-repeat;
+	}
+	to{
+		background: url('img/bird1.png') 0 0 no-repeat;
+	}
+}
+@-o-keyframes birdfly{
+	from{
+		background: url('img/bird0.png') 0 0 no-repeat;
+	}
+	to{
+		background: url('img/bird1.png') 0 0 no-repeat;
+	}
+}
+@keyframes birdfly{
+	from{
+		background: url('img/bird0.png') 0 0 no-repeat;
+	}
+	to{
+		background: url('img/bird1.png') 0 0 no-repeat;
+	}
+}
+@-webkit-keyframes updown{
+	0%{
+        top:0px;
+	}
+	50%{
+      top:50px;
+	}
+	100%{
+      top:0px;
+	}
+}
+@-moz-keyframes updown{
+	0%{
+        top:0px;
+	}
+	50%{
+      top:50px;
+	}
+	100%{
+      top:0px;
+	}
+}
+@-o-keyframes updown{
+	0%{
+        top:0px;
+	}
+	50%{
+      top:50px;
+	}
+	100%{
+      top:0px;
+	}
+}
+@keyframes updown{
+	0%{
+        top:0px;
+	}
+	50%{
+      top:50px;
+	}
+	100%{
+      top:0px;
+	}
+}
+.startBtns{
+	position: absolute;
+	width:100%;
+	top:160px;
+	text-align: center;
+}
+.startBtns img{
+	margin:0 10px;
+}
+.gress{
+	position: absolute;
+	bottom:57px;
+}
+.gress img{
+	position: absolute;
+}
+.gress>img:nth-child(1){
+	left:0;
+	animation:gress1 3s infinite linear;
+}
+.gress>img:nth-child(2){
+	left:343px;
+	animation:gress2 3s infinite linear;
+}
+
+/*草地动画*/
+@keyframes gress1{
+	from{
+      left:0;
+	}
+	to{
+     left:-343px;
+	}
+}
+@keyframes gress2{
+   from{
+   	left:343px;
+   }
+   to{
+   	left:0px;
+   }
+}
+/*结束界面*/
+.overCon{
+	position: absolute;
+	width:100%;
+	top:100px;
+	display: none;
+	z-index: 2;
+}
+.overImg{
+	position: absolute;
+	top:0;
+	width:100%;
+	height:40px;
+	background: url('img/game_over.jpg') center  no-repeat;
+}
+.scoreList{
+	position: absolute;
+	top:50px;
+	height:160px;
+	width:100%;
+	background: url('img/message.jpg') center no-repeat;
+}
+.nowScore,.bestScore{
+	position: absolute;
+	font-size: 30px;
+
+}
+.nowScore{
+	top:51px;
+	right:63px;
+	color: orange;
+}
+.bestScore{
+	top:102px;
+	right:63px;
+	color: red;
+}
+.ok{
+	position: absolute;
+	width:100%;
+	top:230px;
+	text-align: center;
+}
+.pipeCon{
+	position: absolute;
+	width:100%;
+}
+.pipe{
+	position: absolute;
+	left:343px;
+	width:62px;
+	height:423px;
+}
+.pipeUp,.pipeDown{
+	position: absolute;
+	width:100%;
+}
+.pipeUp{
+	/*height:130px;*/
+	top:0;
+	background: url('img/up_mod.png');
+}
+.upHead{
+	position: absolute;
+	width:100%;
+	height:60px;
+	bottom:0px;
+	background: url('img/up_pipe.png');
+}
+.pipeDown{
+	/*height:130px;*/
+	bottom:0;
+	background: url('img/down_mod.png');
+}
+.downHead{
+    position: absolute;
+    width:100%;
+    height:60px;
+    top:0;
+    background: url('img/down_pipe.png');
+}

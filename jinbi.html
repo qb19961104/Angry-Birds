@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞检测游戏</title>
+	<style>
+		body{
+			overflow: hidden;
+		}
+		img{
+			position: absolute;
+			width:50px;
+			height:50px;
+			top:-80px;
+		}
+		.pen{
+			width:103px;
+			height:48px;
+			position: fixed;
+			left:20px;
+			bottom:50px;
+			background: url('img/pen.png') 0 0 no-repeat;
+		}
+	</style>
+</head>
+<body>
+
+	<div class='pen'></div> 
+	<script type="text/javascript">
+		//实现盆的拖动，鼠标摁下并拖动，盆的x方向和鼠标保持一致，鼠标抬起，盆不跟这动
+
+		var pen=document.querySelector('.pen');
+		var body=document.querySelector('body');
+		var moneyArr=[];
+		var i=0;		//控制渲染频率
+
+		//随机函数
+		function rN(min,max){
+            return Math.round(Math.random()*(max-min)+min);
+		}
+		//创建一个金币的函数
+		function createMoney(){
+			//创建一个img标签
+			// 为这个img设置src
+			//设置这个图片的位置
+			// 将其添加到body中
+			var winW=document.documentElement.clientWidth-50;
+			var newImg=document.createElement('img');
+			newImg.src='img/jin.png';
+			newImg.style.left=rN(0,winW)+'px'
+			body.appendChild(newImg);
+			moneyArr.push(newImg);
+		}
+        //金币掉落
+        function moneyDown(){
+        	for(var i=0;i<moneyArr.length;i++){
+
+              moneyArr[i].style.top=moneyArr[i].offsetTop+2+'px';
+              //判断金币是否掉落出了可视窗口，掉出删除
+              if(moneyArr[i].offsetTop>document.documentElement.clientHeight){
+              	//移出节点
+              	moneyArr[i].remove();
+              	// 从数组中移出
+              	moneyArr.splice(i,1);
+              	i--;
+              }
+        	}		
+        }
+
+
+        //两个方块碰撞检测函数的封装
+        function hit(ab){
+				var r = ab.offsetLeft <= pen.offsetLeft+pen.offsetWidth;
+				var l = pen.offsetLeft <= ab.offsetLeft+ab.offsetWidth;
+				var t = ab.offsetTop+ab.offsetHeight >= pen.offsetTop; 		
+				if(t && r && l){
+					// ab.remove();
+					// var index =moneyArr.indexOf(ab);
+					// moneyArr.splice(index,1);
+					return true;
+				}
+ 			}
+
+		//游戏运行
+		function gameRun(){
+			i++;
+			if(i%60==0){
+			  //创建金币
+               createMoney();
+			}
+			//控制金币掉落
+             moneyDown();
+            for(var j=0;j<moneyArr.length;j++){
+            	var res=hit(moneyArr[j]);
+            	if(res){
+            		moneyArr[j].remove();
+            		moneyArr.splice(j,1);
+            		j--;
+            	}
+
+
+            }
+          window.requestAnimationFrame(gameRun);
+		}
+
+		gameRun();
+		
+
+
+
+
+
+
+
+		pen.onmousedown=function(ev){
+			var e=ev || window.event;
+			var leftDis=e.clientX;//相对位置
+			document.onmousemove=function(em){
+             var ep=em || window.event;
+             pen.style.left=ep.clientX-leftDis+'px';
+
+           
+         }
+		}
+		//鼠标抬起实效
+		  document.onmouseup=function(){
+				document.onmousemove=null;
+			}
+		
+	</script>
+</body>
+</html>

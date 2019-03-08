@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title id="title"></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var i=0;
+		var j=0;
+		// setInterval(function(){
+  //          i++;
+  //          title.innerHTML=i;
+		// },1000)
+		function test(){
+			i++;
+			if(i%60==0){
+				j++;
+				title.innerHTML=j;
+			}
+			window.requestAnimationFrame(test);
+		}
+		test();
+	</script>
+</body>
+</html>
